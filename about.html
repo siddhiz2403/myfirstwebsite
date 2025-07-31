@@ -1,3 +1,4 @@
+HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,4 +196,203 @@
     }
   </script>
 </body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - Siddhi Zambre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0077cc;
+      --accent: #00d4ff;
+      --bg: #f9f9f9;
+      --dark-bg: #121212;
+      --text: #222;
+      --text-light: #fff;
+      --transition: 0.3s all ease-in-out;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--text-light);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #fff;
+    }
+
+
+    header {
+      background: linear-gradient(to right, #0077cc, #00d4ff);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark-mode section {
+      background: #1e1e1e;
+    }
+
+    section h2 {
+      color: #0077cc;
+      margin-bottom: 1rem;
+    }
+
+    body.dark-mode section h2 {
+      color: #00d4ff;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a.back-link {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      background: transparent;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    a.back-link:hover {
+      background: rgba(0, 53, 90, 0.1);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
+  <header data-aos="fade-down">
+    <h1>About Me</h1>
+    <p>Engineer | Frontend Learner | Future Project Manager</p>
+  </header>
+
+  <section data-aos="fade-up">
+    <h2>My Journey</h2>
+    <p>
+      I am Siddhi Zambre, a final-year Electronics and Telecommunication Engineering student driven by curiosity, adaptability, and the pursuit of excellence. I am passionate about frontend development and product design, and I'm preparing myself to transition into Project Management roles, particularly in fast-paced global tech hubs like Dubai.
+    </p>
+    <p>
+      With limited starting resources but limitless intent, I have worked on multiple real-world projects that span hardware and software domains — from radar-based rider safety to IoT-powered drainage systems. I may not know every tool at the start, but I have consistently learned whatever was needed to bring ideas to life.
+    </p>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>My Achievements</h2>
+    <ul>
+      <li>Played at State level Kabbadi.</li>
+      <li>Elected as Sports Captain.</li>
+      <li>Elected as Captain for 3 years continuously.</li>
+      <li>Participated at Zonal for Swimming.</li>
+      <li>Awarded as the Scholar of the Year by Camlin and Bank of Baroda.</li>
+      <li>Awarded as the Best Youngest Athlete by Symbiosis Management.</li>
+      <li>Fluent in English, Hindi, Marathi, with ongoing studies in German and Japanese — showcasing global adaptability.</li>
+      <li>Self-learned HTML, CSS, JS, C, and C++ from scratch to build my portfolio.</li>
+      <li>Designed my personal website showcasing all my skills and projects independently.</li>
+      <li>Represented school and college in interschool drawing and essay competitions.</li>
+      <li>Volunteered in multiple technical and non-technical college events.</li>
+      <li>Conducted home tuition classes, mentoring younger students in math and science.</li>
+    </ul>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Interests & Hobbies</h2>
+    <p>
+      Beyond academics and coding, I love exploring languages and cultures, creating visually appealing digital experiences, and learning new technologies. I'm also deeply interested in entrepreneurship, real estate, and the stock market — areas I plan to explore further after establishing my tech career.
+      In addition,I have always had a strong inclination towards sports, especially team games that foster discipline and leadership. My experience in competitive sports has shaped my ability to perform under pressure and strengthened qualities like resilience, focus and teamwork.
+    </p>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Strengths & Values</h2>
+    <ul>
+      <li><strong>Adaptable:</strong> I can quickly pick up any new skill or tool required to complete a task.</li>
+      <li><strong>Goal-Oriented:</strong> I set high targets for myself and work consistently toward them — including my goal of securing a top package.</li>
+      <li><strong>Resourceful:</strong> I use what I have, and build what I don’t. Whether it's tech, design, or documentation — I figure it out.</li>
+      <li><strong>Growth Mindset:</strong> I believe there's nothing I can't learn if I set my mind to it. This belief fuels my personal and professional progress.</li>
+      <li><strong>Emotionally Intelligent:</strong> I am sensitive to team dynamics, respectful of feedback, and calm under pressure — qualities that help me build strong relationships and handle responsibility maturely.</li>
+    </ul>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Future Vision</h2>
+    <p>
+      My short-term goal is to crack a high-paying tech role (15–25 LPA or higher) by April 2026. Long term, I aim to move into project management, contribute to global tech innovation, and eventually launch my own venture — blending creativity, impact, and leadership.
+    </p>
+  </section>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      document.getElementById("themeIcon").className = isDark ? "fas fa-sun" : "fas fa-moon";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("themeIcon").className = "fas fa-sun";
+      }
+    }
+  </script>
+</body>
+193d1ec7d9a208fa1f1fdf31238c5ce24dd90d53
 </html>
