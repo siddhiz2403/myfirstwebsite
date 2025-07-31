@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoDust-Free Smart Blackboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0077cc;
+      --accent: #00d4ff;
+      --bg: #f9f9f9;
+      --dark-bg: #121212;
+      --text: #222;
+      --text-light: #fff;
+      --transition: 0.3s ease-in-out;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--text-light);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(to right, #0077cc, #00d4ff);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--primary);
+      padding-left: 0.5rem;
+    }
+
+    .text-section {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      position: relative;
+      color: #000;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .popup p {
+      margin-top: 1rem;
+    }
+
+    .dark-mode .popup {
+      background: #1e1e1e;
+      color: var(--text-light);
+    }
+
+    .view-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background-color: #005fa3;
+    }
+
+    .project-image {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .project-image img {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 1rem;
+    }
+
+    .back-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+  z-index: 999;
+}
+
+.back-link:hover {
+  color: #003366; /* Dark Blue on hover */
+}
+  </style>
+</head>
+<body>
+     <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
+
+  <header>
+    <h1>AutoDust-Free Smart Blackboard</h1>
+    <p>Innovative classroom solution for clean, healthy teaching environments</p>
+  </header>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Introduction</h2>
+    <p>This system eliminates chalk dust exposure for teachers by automating board cleaning and trapping dust within a specialized compartment, contributing to better hygiene and reduced health risk.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Technologies Used</h2>
+    <ul>
+      <li>DC motor mechanism</li>
+      <li>Push button control</li>
+      <li>Dust-absorbing frame compartments</li>
+      <li>Mechanical linkage and sliders</li>
+      <li>Basic electronics (motor driver, switches)</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>How It Works</h2>
+    <p>The system uses a full-width motorized duster to clean the board while capturing chalk dust using surrounding compartments.</p>
+    <button class="view-btn" onclick="document.querySelector('.popup-overlay').style.display='flex'">View Sensor Logic</button>
+  </section>
+
+  <div class="popup-overlay">
+    <div class="popup">
+      <span class="close-btn" onclick="document.querySelector('.popup-overlay').style.display='none'">&times;</span>
+      <h3>Mechanism Details</h3>
+      <p>When the user presses a button placed on the side of the board, a motorized duster moves horizontally across the board. As it glides, the compartments on either side absorb the chalk particles using built-in filters. The motor is calibrated to move at an optimal speed, ensuring even cleaning without scattering dust. The system was prototyped using simple mechanical elements and controlled by basic electronic components like a switch and a driver circuit.</p>
+    </div>
+  </div>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Advantages</h2>
+    <ul>
+      <li>Prevents chalk dust-related respiratory issues</li>
+      <li>Increases teacher safety and hygiene</li>
+      <li>Saves time by automating board cleaning</li>
+      <li>Simple implementation and cost-effective</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Learning & Challenges</h2>
+    <ul>
+      <li>Understanding dust management in enclosed systems</li>
+      <li>Balancing speed and torque in the motor mechanism</li>
+      <li>Testing materials for efficient dust trapping</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Conclusion</h2>
+    <p>This project offered an opportunity to explore mechanical design and address real-world classroom health concerns through a basic yet impactful automation solution.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>HR-Friendly Summary</h2>
+    <p>Being one of my earliest projects, it reflects my problem-solving mindset. I didn’t have deep technical skills then but developed everything through research, trial, and collaboration — proving I'm flexible, curious, and determined to turn ideas into working models.</p>
+  </section>
+
+  <div class="project-image" data-aos="fade-up">
+    <img src="https://via.placeholder.com/500x300?text=Smart+Blackboard" alt="Smart Blackboard Image">
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      document.getElementById("themeIcon").className = isDark ? "fas fa-sun" : "fas fa-moon";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("themeIcon").className = "fas fa-sun";
+      }
+    }
+  </script>
+</body>
+</html>
