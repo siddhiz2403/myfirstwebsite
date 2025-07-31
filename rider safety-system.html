@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radar-Based Rider Safety System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0077cc;
+      --accent: #00d4ff;
+      --bg: #f9f9f9;
+      --dark-bg: #121212;
+      --text: #222;
+      --text-light: #fff;
+      --transition: 0.3s ease-in-out;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--text-light);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(to right, #0077cc, #00d4ff);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--primary);
+      padding-left: 0.5rem;
+    }
+
+    .text-section {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      position: relative;
+      color: #000;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .popup p {
+      margin-top: 1rem;
+    }
+
+    .dark-mode .popup {
+      background: #1e1e1e;
+      color: var(--text-light);
+    }
+
+    .view-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background-color: #005fa3;
+    }
+
+    .project-image {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .project-image img {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 1rem;
+    }
+
+    .back-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+  z-index: 999;
+}
+
+.back-link:hover {
+  color: #003366; /* Dark Blue on hover */
+}
+  </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
+  <header>
+    <h1>Radar-Based Rider Safety System</h1>
+    <p>Enhancing two-wheeler rider awareness through embedded radar sensing</p>
+  </header>
+
+  <section class="text-section" data-aos="fade-up">>
+      <h2>Introduction</h2>
+      <p>This system leverages radar technology to alert two-wheeler riders of approaching vehicles from behind, minimizing blind spot risks and reducing the chance of accidents on roads.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>Technologies Used</h2>
+      <ul>
+        <li>Embedded Radar Module</li>
+        <li>Microcontroller (ESP32)</li>
+        <li>Buzzer / LED Alert System</li>
+        <li>Arduino IDE Programming</li>
+        <li>Prototyping with sensors & breadboard</li>
+      </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>How It Works</h2>
+      <p>This radar system functions by continuously scanning the area behind the vehicle and identifying nearby fast-approaching objects.</p>
+      <button class="view-btn" onclick="document.querySelector('.popup-overlay').style.display='flex'">View Sensor Logic</button>
+  </section>
+
+  <div class="popup-overlay">
+    <div class="popup">
+      <span class="close-btn" onclick="document.querySelector('.popup-overlay').style.display='none'">&times;</span>
+      <h3>Sensor Logic (Working Details)</h3>
+      <p>The radar sensor emits electromagnetic waves and calculates the time delay between transmission and reflection from nearby objects. If a vehicle is detected within a certain range and its speed is approaching a defined threshold, the microcontroller triggers the buzzer and LED alert. Calibration is done to ignore small objects and avoid false positives. The entire system is compact and optimized for real-time performance.</p>
+    </div>
+  </div>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>Advantages</h2>
+      <ul>
+        <li>Improves two-wheeler safety</li>
+        <li>Provides rear traffic awareness</li>
+        <li>Compact and cost-effective</li>
+        <li>Can be integrated in helmets or vehicle frames</li>
+      </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>Learning & Challenges</h2>
+      <ul>
+        <li>Explored radar-based proximity sensing</li>
+        <li>Tested real-time data accuracy</li>
+        <li>Faced issues in sensor calibration and environment noise</li>
+      </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>Conclusion</h2>
+      <p>This safety solution showcases how embedded systems and sensors can be combined to create intelligent systems that protect human lives on road.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+      <h2>Summary</h2>
+      <p>This project reflects my early interest in safety tech and embedded systems. Despite limited experience, I researched radar modules, prototyped from scratch, and iterated the system with available knowledge—showing adaptability, research mindset, and initiative.</p>
+  </section>
+
+  <div class="project-image" data-aos="fade-up">
+    <img src="https://via.placeholder.com/500x300?text=Ridersafety" alt="Rider Safety Image">
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      document.getElementById("themeIcon").className = isDark ? "fas fa-sun" : "fas fa-moon";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("themeIcon").className = "fas fa-sun";
+      }
+    }
+  </script>
+</body>
+</html>
