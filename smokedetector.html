@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireless Smoke Detector Alaram System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0077cc;
+      --accent: #00d4ff;
+      --bg: #f9f9f9;
+      --dark-bg: #121212;
+      --text: #222;
+      --text-light: #fff;
+      --transition: 0.3s ease-in-out;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--text-light);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(to right, #0077cc, #00d4ff);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--primary);
+      padding-left: 0.5rem;
+    }
+
+    .text-section {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      position: relative;
+      color: #000;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .popup p {
+      margin-top: 1rem;
+    }
+
+    .dark-mode .popup {
+      background: #1e1e1e;
+      color: var(--text-light);
+    }
+
+    .view-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background-color: #005fa3;
+    }
+
+    .project-image {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .project-image img {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 1rem;
+    }
+
+    .back-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+  z-index: 999;
+}
+
+.back-link:hover {
+  color: #003366; /* Dark Blue on hover */
+}
+  </style>
+</head>
+<body>
+     <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
+
+  <header>
+    <h1>Wireless Smoke Detector Alaram System</h1>
+    <p>Wireless solution to detect smoke and notify users remotely — ensuring fast fire hazard prevention and safety.</p>
+  </header>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Introduction</h2>
+    <p>This project presents a smart smoke detection system using an Arduino and MQ2 sensor to identify smoke and trigger alerts. Upon detecting smoke, the system wirelessly signals other detectors in the vicinity to activate their alarms. It's a compact, battery-operated, cost-effective solution ideal for home and commercial safety.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Technologies Used</h2>
+    <ul>
+      <li>Arduino UNO – Microcontroller for processing sensor input and triggering alerts.</li>
+      <li>MQ2 Gas/Smoke Sensor – Detects smoke and flammable gases in the environment.</li>
+      <li>Wireless Transmitter & Receiver (e.g., RF Module) – Enables communication between detectors.</li>
+      <li>MBuzzers & LEDs – Provide audible and visual alerts.</li>
+      <li>Battery Power Supply – For standalone operation without external wiring.</li>
+      <li>Embedded C / Arduino IDE – For writing and uploading code to the Arduino.</li>
+      <li>Breadboard & Connecting Wires – Used for prototyping and connections.</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>How It Works</h2>
+    <p>A wireless smoke detector system senses smoke using a gas sensor and immediately alerts through a buzzer and transmitter network.</p>
+    <button class="view-btn" onclick="document.querySelector('.popup-overlay').style.display='flex'">View Sensor Logic</button>
+  </section>
+
+  <div class="popup-overlay">
+    <div class="popup">
+      <span class="close-btn" onclick="document.querySelector('.popup-overlay').style.display='none'">&times;</span>
+      <h3>Mechanism Details</h3>
+      <p>When smoke is detected by the MQ2 sensor, the Arduino processes the analog value and compares it against a set threshold. If the value exceeds the limit, it triggers a buzzer and activates an RF transmitter. This transmitter sends a wireless signal to nearby receivers (other smoke detectors or a central unit). Upon receiving the signal, the other units also activate their buzzers or LEDs for wider alerting. This setup ensures early fire detection even if the source is not in your immediate vicinity. The system operates on a battery, making it ideal for portable or retrofit use.</p>
+    </div>
+  </div>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Advantages</h2>
+    <ul>
+      <li>Enables early fire detection even from remote zones.</li>
+      <li>Wireless communication ensures faster, wider alerts across rooms or buildings.</li>
+      <li>Portable and easy to deploy without wiring hassles.</li>
+      <li>Cost-effective and ideal for both residential and commercial use.</li>
+      <li>Enhances safety in spaces with limited human presence.</li>
+      <li>Can be integrated with existing fire alert systems.</li>
+      <li>Battery-powered, ensuring operation during power cuts.</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Learning & Challenges</h2>
+    <ul>
+      <li>Wireless Communication: Understood and implemented RF module interfacing for seamless data transmission between sensors and receivers.</li>
+      <li>Power Management: Learned how to ensure consistent battery performance and low power consumption.</li>
+      <li>Sensor Calibration: Faced difficulty in tuning the smoke sensor to avoid false positives; resolved through iterative testing.</li>
+      <li>Real-time Responsiveness: Ensured alerts were triggered instantly on detecting smoke, improving safety and reliability.</li>
+      <li>Range Testing: Tested RF signal range in various building layouts to guarantee reliable operation.</li>
+      <li>Hardware Troubleshooting: Gained experience in debugging hardware circuits and ensuring correct connections with microcontroller.</li>
+    </ul>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Conclusion</h2>
+    <p>This project offered hands-on experience with real-time safety systems, combining wireless communication and sensor integration to build a reliable smoke detection alert mechanism.</p>
+  </section>
+
+  <section class="text-section" data-aos="fade-up">
+    <h2>Summary</h2>
+    <p>The project reflects my ability to integrate electronics, wireless tech, and system thinking to solve practical safety problems—demonstrating adaptability, focus, and end-to-end implementation skills.</p>
+  </section>
+
+  <div class="project-image" data-aos="fade-up">
+    <img src="https://via.placeholder.com/500x300?text=Smart+Blackboard" alt="Smart Blackboard Image">
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      document.getElementById("themeIcon").className = isDark ? "fas fa-sun" : "fas fa-moon";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("themeIcon").className = "fas fa-sun";
+      }
+    }
+  </script>
+</body>
+</html>
